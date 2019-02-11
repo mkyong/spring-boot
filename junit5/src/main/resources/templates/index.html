@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link data-th-href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div id="title">
+            <h1>Spring WebFlux + Server Sent Events</h1>
+        </div>
+
+        <table id="comments" class="table table-striped">
+            <thead>
+            <tr>
+                <th width="10%">Author</th>
+                <th width="60%">Message</th>
+                <th width="30%">Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="result" data-th-each="comment : ${comments}">
+                <td>[[${comment.author}]]</td>
+                <td>[[${comment.message}]]</td>
+                <td>[[${comment.timestamp}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script data-th-src="@{/js/main.js}"></script>
+
+</body>
+
+</html>
