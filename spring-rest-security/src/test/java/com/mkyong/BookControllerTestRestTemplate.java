@@ -22,10 +22,6 @@ public class BookControllerTestRestTemplate {
 
     private static final ObjectMapper om = new ObjectMapper();
 
-    //https://www.baeldung.com/spring-security-integration-tests
-    //https://github.com/devdojobr/springboot-essentials/blob/master/src/test/java/br/com/devdojo/StudentEndpointTest.java
-    //https://docs.spring.io/spring-security/site/docs/4.0.x/reference/htmlsingle/#test
-
     //@WithMockUser is not working with TestRestTemplate
     @Autowired
     private TestRestTemplate restTemplate;
