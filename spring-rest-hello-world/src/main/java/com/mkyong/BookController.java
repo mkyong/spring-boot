@@ -3,6 +3,7 @@ package com.mkyong;
 import com.mkyong.error.BookNotFoundException;
 import com.mkyong.error.BookUnSupportedFieldPatchException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,8 @@ public class BookController {
 
     // Save
     @PostMapping("/books")
+    //return 201 instead of 200
+    @ResponseStatus(HttpStatus.CREATED)
     Book newBook(@RequestBody Book newBook) {
         return repository.save(newBook);
     }

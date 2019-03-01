@@ -19,6 +19,13 @@ public class Book {
     public Book() {
     }
 
+    public Book(Long id, String name, String author, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.price = price;
+    }
+
     public Book(String name, String author, BigDecimal price) {
         this.name = name;
         this.author = author;
@@ -66,4 +73,5 @@ public class Book {
                 ", price=" + price +
                 '}';
     }
+
 }
