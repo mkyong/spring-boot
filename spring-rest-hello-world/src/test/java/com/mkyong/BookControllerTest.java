@@ -171,7 +171,7 @@ public class BookControllerTest {
         doNothing().when(mockRepository).deleteById(1L);
 
         mockMvc.perform(delete("/books/1"))
-                .andDo(print())
+                /*.andDo(print())*/
                 .andExpect(status().isOk());
 
         verify(mockRepository, times(1)).deleteById(1L);
