@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="LogToFile" fileName="logs/app.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.mkyong" level="debug" additivity="false">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Logger name="org.springframework.boot" level="error" additivity="false">
+            <AppenderRef ref="LogToConsole"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="LogToConsole"/>
+        </Root>
+    </Loggers>
+</Configuration>

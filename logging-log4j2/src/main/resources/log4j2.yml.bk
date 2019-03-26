@@ -1,0 +1,34 @@
+Configuration:
+  status: debug
+
+  appenders:
+    Console:
+      name: LogToConsole
+      PatternLayout:
+        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+
+    RollingFile:
+      - name: LogToRollingFile
+        fileName: logs/app.log
+        filePattern: "logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
+        PatternLayout:
+          pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 10MB
+        DefaultRollOverStrategy:
+          max: 10
+
+  Loggers:
+    logger:
+      - name: com.mkyong
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: LogToConsole
+          - ref: LogToRollingFile
+
+    Root:
+      level: error
+      AppenderRef:
+        ref: LogToConsole
