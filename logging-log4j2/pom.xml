@@ -50,7 +50,14 @@
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
-        <!-- [start] for log4j2.yml, need jackson-databind and jackson-dataformat-yaml -->
+        <!-- asynchronous loggers -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
+        <!-- for log4j2.yml, need jackson-databind and jackson-dataformat-yaml -->
 
         <!-- spring-boot-starter-web -> spring-boot-starter-json -> jackson-databind-->
         <!-- included by spring boot
@@ -60,12 +67,13 @@
         </dependency>
         -->
 
+        <!--
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
         </dependency>
+        -->
 
-        <!-- [end] for log4j2.yml.bk, we need this two-->
 
     </dependencies>
 

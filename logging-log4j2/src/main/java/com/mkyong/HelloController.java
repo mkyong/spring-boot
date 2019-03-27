@@ -20,11 +20,21 @@ public class HelloController {
     @GetMapping("/")
     public String main(Model model) {
 
-        logger.debug("Hello from Log4j 2");
+        // pre-java 8
+        if (logger.isDebugEnabled()) {
+            logger.debug("Hello from Log4j 2 - num : {}", num);
+        }
+
+        // java 8 lambda, no need to check log level
+        logger.debug("Hello from Log4j 2 - num : {}", () -> num);
 
         model.addAttribute("tasks", num);
 
         return "welcome"; //view
+    }
+
+    private int getNum() {
+        return 100;
     }
 
 }

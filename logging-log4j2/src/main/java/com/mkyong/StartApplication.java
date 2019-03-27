@@ -10,10 +10,4 @@ public class StartApplication {
         SpringApplication.run(StartApplication.class, args);
     }
 
-    // not working
-    /*CommandLineRunner init() {
-        return args -> {
-            System.setProperty("log4j2.contextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
-        };
-    }*/
 }
