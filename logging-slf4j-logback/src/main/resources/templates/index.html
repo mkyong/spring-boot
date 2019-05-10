@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Boot SLF4j Logback</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../../css/main.css"/>
+</head>
+<body>
+
+<h1>Spring Boot + SLF4j Logback example</h1>
+<ul>
+    <li th:each="n : ${num}" th:text="${n}"></li>
+</ul>
+
+</body>
+</html>
