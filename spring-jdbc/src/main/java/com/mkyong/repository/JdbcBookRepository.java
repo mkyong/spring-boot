@@ -3,6 +3,7 @@ package com.mkyong.repository;
 import com.mkyong.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -34,6 +35,7 @@ public class JdbcBookRepository implements BookRepository {
                 "update books set price = ? where id = ?",
                 book.getPrice(), book.getId());
     }
+
 
     @Override
     public int deleteById(Long id) {
