@@ -8,6 +8,9 @@ public class Book {
     private String name;
     private BigDecimal price;
 
+    public Book() {
+    }
+
     public Book(Long id, String name, BigDecimal price) {
         this.id = id;
         this.name = name;

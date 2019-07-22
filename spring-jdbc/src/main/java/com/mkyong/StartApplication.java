@@ -1,5 +1,6 @@
 package com.mkyong;
 
+import com.mkyong.misc.StoreProcedureTest;
 import com.mkyong.repository.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +26,12 @@ public class StartApplication implements CommandLineRunner {
     JdbcTemplate jdbcTemplate;
 
     @Autowired
-    //@Qualifier("jdbcBookRepository")
-    @Qualifier("namedParameterJdbcBookRepository")
+    //@Qualifier("jdbcBookRepository")              // Test JdbcTemplate
+    @Qualifier("namedParameterJdbcBookRepository")  // Test NamedParameterJdbcTemplate
     private BookRepository bookRepository;
+
+    //@Autowired
+    //StoreProcedureTest storeProcedureTest;
 
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
@@ -37,6 +41,15 @@ public class StartApplication implements CommandLineRunner {
     public void run(String... args) {
 
         log.info("StartApplication...");
+
+        // Test SimpleJdbcCall
+        // storeProcedureTest.runStoredProc();
+
+        runJDBC();
+
+    }
+
+    void runJDBC() {
 
         log.info("Creating tables for testing...");
 
@@ -86,6 +99,7 @@ public class StartApplication implements CommandLineRunner {
 
         // find all
         log.info("[FIND_ALL] {}", bookRepository.findAll());
+
     }
 
 }

@@ -35,11 +35,23 @@
         </dependency>
         -->
 
-        <!-- in-memory database  -->
+        <!-- in-memory database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
+
+        <!-- Oracle JDBC driver -->
+        <!-- https://www.mkyong.com/jdbc/connect-to-oracle-db-via-jdbc-driver-java/ -->
+        <!--
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc</artifactId>
+            <version>8</version>
+            <scope>system</scope>
+            <systemPath>d:/projects/ojdbc8.jar</systemPath>
+        </dependency>
+        -->
 
     </dependencies>
 
