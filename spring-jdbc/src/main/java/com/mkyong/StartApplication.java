@@ -1,7 +1,10 @@
 package com.mkyong;
 
-import com.mkyong.misc.StoreProcedureTest;
 import com.mkyong.repository.BookRepository;
+import com.mkyong.sp.StoredFunction;
+import com.mkyong.sp.StoredProcedure1;
+import com.mkyong.sp.StoredProcedure2;
+import com.mkyong.sp.TestData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +33,20 @@ public class StartApplication implements CommandLineRunner {
     @Qualifier("namedParameterJdbcBookRepository")  // Test NamedParameterJdbcTemplate
     private BookRepository bookRepository;
 
-    //@Autowired
-    //StoreProcedureTest storeProcedureTest;
+    @Autowired
+    TestData storeProcedureTest;
+
+    @Autowired
+    StoredProcedure1 storedProcedure1;
+
+    @Autowired
+    StoredProcedure2 storedProcedure2;
+
+    @Autowired
+    StoredFunction storedFunction;
+
+    @Autowired
+    TestData testDate;
 
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
@@ -42,14 +57,18 @@ public class StartApplication implements CommandLineRunner {
 
         log.info("StartApplication...");
 
-        // Test SimpleJdbcCall
-        // storeProcedureTest.runStoredProc();
+        // To test Stored Procedure and Function
+        // Uncomment Oracle JDBC in pom.xml and define datasource in application.properties
+        //testDate.start();
+        //storedProcedure1.start();
+        //storedProcedure2.start();
+        //storedFunction.start();
 
-        runJDBC();
+        start();
 
     }
 
-    void runJDBC() {
+    void start() {
 
         log.info("Creating tables for testing...");
 

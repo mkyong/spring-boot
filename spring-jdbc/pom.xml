@@ -50,8 +50,7 @@
             <version>8</version>
             <scope>system</scope>
             <systemPath>d:/projects/ojdbc8.jar</systemPath>
-        </dependency>
-        -->
+        </dependency>-->
 
     </dependencies>
 
