@@ -1,5 +1,7 @@
 package com.mkyong;
 
+import com.mkyong.customer.Customer;
+import com.mkyong.customer.CustomerRepository;
 import com.mkyong.repository.BookRepository;
 import com.mkyong.sp.StoredFunction;
 import com.mkyong.sp.StoredProcedure1;
@@ -34,6 +36,9 @@ public class StartApplication implements CommandLineRunner {
     private BookRepository bookRepository;
 
     @Autowired
+    CustomerRepository customerRepository;
+
+    @Autowired
     TestData storeProcedureTest;
 
     @Autowired
@@ -64,11 +69,51 @@ public class StartApplication implements CommandLineRunner {
         //storedProcedure2.start();
         //storedFunction.start();
 
-        start();
+        //startCustomerApp();
+
+        startBookApp();
 
     }
 
-    void start() {
+    // Tested with H2 database
+    void startCustomerApp() {
+
+        jdbcTemplate.execute("DROP TABLE customer IF EXISTS");
+        jdbcTemplate.execute("CREATE TABLE customer(" +
+                "id SERIAL, name VARCHAR(255), age NUMERIC(2), created_date timestamp)");
+
+        List<Customer> list = Arrays.asList(
+                new Customer("Customer A", 19),
+                new Customer("Customer B", 20),
+                new Customer("Customer C", 21),
+                new Customer("Customer D", 22)
+        );
+
+        list.forEach(x -> {
+            log.info("Saving...{}", x.getName());
+            customerRepository.save(x);
+        });
+
+        log.info("[FIND_BY_ID]");
+        log.info("{}", customerRepository.findByCustomerId(1L));
+        log.info("{}", customerRepository.findByCustomerId2(2L));
+        log.info("{}", customerRepository.findByCustomerId3(3L));
+
+        log.info("[FIND_ALL]");
+        log.info("{}", customerRepository.findAll());
+        log.info("{}", customerRepository.findAll2());
+        log.info("{}", customerRepository.findAll3());
+        log.info("{}", customerRepository.findAll4());
+
+        log.info("[FIND_NAME_BY_ID]");
+        log.info("{}", customerRepository.findCustomerNameById(4L));
+
+        log.info("[COUNT]");
+        log.info("{}", customerRepository.count());
+
+    }
+
+    void startBookApp() {
 
         log.info("Creating tables for testing...");
 
