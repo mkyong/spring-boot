@@ -7,6 +7,7 @@ import com.mkyong.sp.StoredFunction;
 import com.mkyong.sp.StoredProcedure1;
 import com.mkyong.sp.StoredProcedure2;
 import com.mkyong.sp.TestData;
+import com.mkyong.util.NameGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 
 import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -69,9 +74,11 @@ public class StartApplication implements CommandLineRunner {
         //storedProcedure2.start();
         //storedFunction.start();
 
-        //startCustomerApp();
+        startCustomerApp();
+        //startBookApp();
 
-        startBookApp();
+        //startBookBatchUpdateApp(1000);
+        //startBookBatchUpdateRollBack(1000);
 
     }
 
@@ -163,6 +170,95 @@ public class StartApplication implements CommandLineRunner {
 
         // find all
         log.info("[FIND_ALL] {}", bookRepository.findAll());
+
+    }
+
+    void startLargeResultSet() {
+
+        // if large data, it may prompts java.lang.OutOfMemoryError: Java heap space
+        /*List<Book> list = bookRepository.findAll();
+
+        for (Book book : list) {
+            //process it
+        }*/
+
+        // try RowCallbackHandler for large data
+        jdbcTemplate.query("select * from books", new RowCallbackHandler() {
+            public void processRow(ResultSet resultSet) throws SQLException {
+                while (resultSet.next()) {
+                    String name = resultSet.getString("Name");
+                    // process it
+                }
+            }
+        });
+
+    }
+
+    void startBookBatchUpdateRollBack(int size) {
+
+        jdbcTemplate.execute("CREATE TABLE books(" +
+                "id SERIAL, name VARCHAR(255), price NUMERIC(15, 2))");
+
+        List<Book> books = new ArrayList();
+        for (int count = 0; count < size; count++) {
+            if (count == 500) {
+                // create a invalid data for id 500, test rollback
+                // name allow 255, this book has length of 300
+                books.add(new Book(NameGenerator.randomName(300), new BigDecimal(1.99)));
+                continue;
+            }
+            books.add(new Book(NameGenerator.randomName(20), new BigDecimal(1.99)));
+        }
+
+        try {
+            // with @Transactional, any error, entire batch will be roll back
+            bookRepository.batchInsert(books, 100);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        List<Book> bookFromDatabase = bookRepository.findAll();
+
+        // count = 0 , id 500 error, roll back all
+        log.info("Total books: {}", bookFromDatabase.size());
+
+    }
+
+    void startBookBatchUpdateApp(int size) {
+
+        //jdbcTemplate.execute("DROP TABLE books IF EXISTS");
+        jdbcTemplate.execute("CREATE TABLE books(" +
+                "id SERIAL, name VARCHAR(255), price NUMERIC(15, 2))");
+
+        List<Book> books = new ArrayList();
+        for (int count = 0; count < size; count++) {
+            books.add(new Book(NameGenerator.randomName(20), new BigDecimal(1.99)));
+        }
+
+        // batch insert
+        bookRepository.batchInsert(books);
+
+        List<Book> bookFromDatabase = bookRepository.findAll();
+
+        // count
+        log.info("Total books: {}", bookFromDatabase.size());
+        // random
+        log.info("{}", bookRepository.findById(2L).orElseThrow(IllegalArgumentException::new));
+        log.info("{}", bookRepository.findById(500L).orElseThrow(IllegalArgumentException::new));
+
+        // update all books to 9.99
+        bookFromDatabase.forEach(x -> x.setPrice(new BigDecimal(9.99)));
+
+        // batch update
+        bookRepository.batchUpdate(bookFromDatabase);
+
+        List<Book> updatedList = bookRepository.findAll();
+
+        // count
+        log.info("Total books: {}", updatedList.size());
+        // random
+        log.info("{}", bookRepository.findById(2L).orElseThrow(IllegalArgumentException::new));
+        log.info("{}", bookRepository.findById(500L).orElseThrow(IllegalArgumentException::new));
 
     }
 

@@ -2,10 +2,15 @@ package com.mkyong.repository;
 
 import com.mkyong.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,5 +99,78 @@ public class JdbcBookRepository implements BookRepository {
         );
     }
 
+    @Override
+    public int[] batchUpdate(List<Book> books) {
 
+        return this.jdbcTemplate.batchUpdate(
+                "update books set price = ? where id = ?",
+                new BatchPreparedStatementSetter() {
+
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setBigDecimal(1, books.get(i).getPrice());
+                        ps.setLong(2, books.get(i).getId());
+                    }
+
+                    public int getBatchSize() {
+                        return books.size();
+                    }
+
+                });
+
+    }
+
+    @Override
+    public int[][] batchUpdate(List<Book> books, int batchSize) {
+
+        int[][] updateCounts = jdbcTemplate.batchUpdate(
+                "update books set price = ? where id = ?",
+                books,
+                batchSize,
+                new ParameterizedPreparedStatementSetter<Book>() {
+                    public void setValues(PreparedStatement ps, Book argument) throws SQLException {
+                        ps.setBigDecimal(1, argument.getPrice());
+                        ps.setLong(2, argument.getId());
+                    }
+                });
+        return updateCounts;
+
+    }
+
+    @Override
+    public int[] batchInsert(List<Book> books) {
+
+        return this.jdbcTemplate.batchUpdate(
+                "insert into books (name, price) values(?,?)",
+                new BatchPreparedStatementSetter() {
+
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setString(1, books.get(i).getName());
+                        ps.setBigDecimal(2, books.get(i).getPrice());
+                    }
+
+                    public int getBatchSize() {
+                        return books.size();
+                    }
+
+                });
+    }
+
+    // Any failure causes the entire operation to roll back, none of the book will be added
+    @Transactional
+    @Override
+    public int[][] batchInsert(List<Book> books, int batchSize) {
+
+        int[][] updateCounts = jdbcTemplate.batchUpdate(
+                "insert into books (name, price) values(?,?)",
+                books,
+                batchSize,
+                new ParameterizedPreparedStatementSetter<Book>() {
+                    public void setValues(PreparedStatement ps, Book argument) throws SQLException {
+                        ps.setString(1, argument.getName());
+                        ps.setBigDecimal(2, argument.getPrice());
+                    }
+                });
+        return updateCounts;
+
+    }
 }

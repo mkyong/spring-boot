@@ -41,12 +41,14 @@
         </dependency>
         -->
 
-        <!-- in-memory database -->
+        <!-- Postgresql
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
         </dependency>
-
+        -->
+        
         <!-- Oracle JDBC driver -->
         <!-- https://www.mkyong.com/jdbc/connect-to-oracle-db-via-jdbc-driver-java/ -->
         <!--
@@ -57,6 +59,12 @@
             <scope>system</scope>
             <systemPath>d:/projects/ojdbc8.jar</systemPath>
         </dependency>-->
+
+        <!-- in-memory database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
 
     </dependencies>
 

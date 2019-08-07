@@ -24,4 +24,12 @@ public interface BookRepository {
 
     String getNameById(Long id);
 
+    int[] batchInsert(List<Book> books);
+
+    int[][] batchInsert(List<Book> books, int batchSize);
+
+    int[] batchUpdate(List<Book> books);
+
+    int[][] batchUpdate(List<Book> books, int batchSize);
+
 }
