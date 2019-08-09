@@ -5,13 +5,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.AbstractLobCreatingPreparedStatementCallback;
+import org.springframework.jdbc.support.lob.LobCreator;
+import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -19,6 +30,9 @@ public class JdbcBookRepository implements BookRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    LobHandler lobHandler;
 
     @Override
     public int count() {
@@ -91,7 +105,7 @@ public class JdbcBookRepository implements BookRepository {
     }
 
     @Override
-    public String getNameById(Long id) {
+    public String findNameById(Long id) {
         return jdbcTemplate.queryForObject(
                 "select name from books where id = ?",
                 new Object[]{id},
@@ -173,4 +187,57 @@ public class JdbcBookRepository implements BookRepository {
         return updateCounts;
 
     }
+
+    // https://www.postgresql.org/docs/7.3/jdbc-binary-data.html
+    // https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#jdbc-lob
+    @Override
+    public void saveImage(Long bookId, File image) {
+
+        try (InputStream imageInStream = new FileInputStream(image)) {
+
+            jdbcTemplate.execute(
+                    "INSERT INTO book_image (book_id, filename, blob_image) VALUES (?, ?, ?)",
+                    new AbstractLobCreatingPreparedStatementCallback(lobHandler) {
+                        protected void setValues(PreparedStatement ps, LobCreator lobCreator) throws SQLException {
+                            ps.setLong(1, 1L);
+                            ps.setString(2, image.getName());
+                            lobCreator.setBlobAsBinaryStream(ps, 3, imageInStream, (int) image.length());
+                        }
+                    }
+            );
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public List<Map<String, InputStream>> findImageByBookId(Long bookId) {
+
+        List<Map<String, InputStream>> result = jdbcTemplate.query(
+                "select id, book_id, filename, blob_image from book_image where book_id = ?",
+                new Object[]{bookId},
+                new RowMapper<Map<String, InputStream>>() {
+                    public Map<String, InputStream> mapRow(ResultSet rs, int i) throws SQLException {
+
+                        String fileName = rs.getString("filename");
+                        InputStream blob_image_stream = lobHandler.getBlobAsBinaryStream(rs, "blob_image");
+
+                        // byte array
+                        //Map<String, Object> results = new HashMap<>();
+                        //byte[] blobBytes = lobHandler.getBlobAsBytes(rs, "blob_image");
+                        //results.put("BLOB", blobBytes);
+
+                        Map<String, InputStream> results = new HashMap<>();
+                        results.put(fileName, blob_image_stream);
+
+                        return results;
+
+                    }
+                });
+
+        return result;
+    }
+
 }

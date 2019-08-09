@@ -48,7 +48,7 @@
             <version>42.2.5</version>
         </dependency>
         -->
-        
+
         <!-- Oracle JDBC driver -->
         <!-- https://www.mkyong.com/jdbc/connect-to-oracle-db-via-jdbc-driver-java/ -->
         <!--

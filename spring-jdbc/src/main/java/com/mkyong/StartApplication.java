@@ -15,15 +15,24 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 // https://spring.io/guides/gs/relational-data-access/
 // https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#jdbc
@@ -58,6 +67,11 @@ public class StartApplication implements CommandLineRunner {
     @Autowired
     TestData testDate;
 
+    @Bean
+    public LobHandler lobHandler() {
+        return new DefaultLobHandler();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(StartApplication.class, args);
     }
@@ -79,6 +93,8 @@ public class StartApplication implements CommandLineRunner {
 
         //startBookBatchUpdateApp(1000);
         //startBookBatchUpdateRollBack(1000);
+
+        //startInsertImageWithPostgreSQL();
 
     }
 
@@ -157,7 +173,7 @@ public class StartApplication implements CommandLineRunner {
         log.info("{}", bookRepository.findByNameAndPrice("Java", new BigDecimal(10)));
 
         // get name (string) by id
-        log.info("[GET_NAME_BY_ID] :1L = {}", bookRepository.getNameById(1L));
+        log.info("[GET_NAME_BY_ID] :1L = {}", bookRepository.findNameById(1L));
 
         // update
         log.info("[UPDATE] :2L :99.99");
@@ -170,6 +186,42 @@ public class StartApplication implements CommandLineRunner {
 
         // find all
         log.info("[FIND_ALL] {}", bookRepository.findAll());
+
+    }
+
+    // Tested with PostgreSQL bytea, it should works in other database binary type
+    void startInsertImageWithPostgreSQL() {
+
+        jdbcTemplate.execute("DROP TABLE book_image");
+
+        jdbcTemplate.execute("CREATE TABLE book_image(" +
+                "id SERIAL, book_id integer, filename varchar(255), blob_image bytea)");
+
+        // save an image into database
+        bookRepository.saveImage(1L, new File("D:\\java-logo.png"));
+        bookRepository.saveImage(1L, new File("D:\\abc.jpg"));
+
+        // get images from database
+        List<Map<String, InputStream>> images = bookRepository.findImageByBookId(1L);
+
+        String fileOutput = "D:\\output\\";
+        try {
+            Files.createDirectories(Paths.get(fileOutput));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Map<String, InputStream> image : images) {
+            // filename, image_in_stream
+            image.forEach((k, v) -> {
+                try {
+                    Files.copy(v, Paths.get(fileOutput + k));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        System.out.println("Done");
 
     }
 
