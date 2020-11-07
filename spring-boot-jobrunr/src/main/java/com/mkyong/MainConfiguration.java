@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class MainConfiguration {
 
     // InMemoryStorageProvider to store the job details
-    // The`spring-boot-starter-web` provides JobMapper
+    // The`spring-boot-starter-web` provides Jackson as JobMapper
     @Bean
     public StorageProvider storageProvider(JobMapper jobMapper) {
         InMemoryStorageProvider storageProvider = new InMemoryStorageProvider();
