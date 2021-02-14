@@ -76,7 +76,7 @@ public class StoredProcedure2 {
         SqlParameterSource paramaters = new MapSqlParameterSource()
                 .addValue("p_name", name);
 
-        Map out = simpleJdbcCallRefCursor.execute(paramaters);
+        Map<String, Object> out = simpleJdbcCallRefCursor.execute(paramaters);
 
         if (out == null) {
             return Collections.emptyList();

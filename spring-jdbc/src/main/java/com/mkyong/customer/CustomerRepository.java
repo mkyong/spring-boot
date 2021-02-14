@@ -36,7 +36,7 @@ public class CustomerRepository {
 
         String sql = "SELECT * FROM CUSTOMER WHERE ID = ?";
 
-        return (Customer) jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Customer.class));
+        return (Customer) jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<Customer>(Customer.class));
 
     }
 
@@ -62,7 +62,7 @@ public class CustomerRepository {
 
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 
-        for (Map row : rows) {
+        for (Map<String, Object> row : rows) {
             Customer obj = new Customer();
 
             obj.setID(((Integer) row.get("ID")).longValue());
@@ -93,7 +93,7 @@ public class CustomerRepository {
 
         List<Customer> customers = jdbcTemplate.query(
                 sql,
-                new BeanPropertyRowMapper(Customer.class));
+                new BeanPropertyRowMapper<Customer>(Customer.class));
 
         return customers;
     }
