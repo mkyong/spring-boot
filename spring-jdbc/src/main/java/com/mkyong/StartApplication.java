@@ -251,7 +251,7 @@ public class StartApplication implements CommandLineRunner {
         jdbcTemplate.execute("CREATE TABLE books(" +
                 "id SERIAL, name VARCHAR(255), price NUMERIC(15, 2))");
 
-        List<Book> books = new ArrayList();
+        List<Book> books = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             if (count == 500) {
                 // create a invalid data for id 500, test rollback
@@ -282,7 +282,7 @@ public class StartApplication implements CommandLineRunner {
         jdbcTemplate.execute("CREATE TABLE books(" +
                 "id SERIAL, name VARCHAR(255), price NUMERIC(15, 2))");
 
-        List<Book> books = new ArrayList();
+        List<Book> books = new ArrayList<>();
         for (int count = 0; count < size; count++) {
             books.add(new Book(NameGenerator.randomName(20), new BigDecimal(1.99)));
         }

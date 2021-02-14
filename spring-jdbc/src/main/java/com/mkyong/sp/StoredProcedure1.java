@@ -73,11 +73,11 @@ public class StoredProcedure1 {
         SqlParameterSource in = new MapSqlParameterSource()
                 .addValue("p_id", id);
 
-        Optional result = Optional.empty();
+        Optional<Book> result = Optional.empty();
 
         try {
 
-            Map out = simpleJdbcCall.execute(in);
+            Map<String, Object> out = simpleJdbcCall.execute(in);
 
             if (out != null) {
                 Book book = new Book();
