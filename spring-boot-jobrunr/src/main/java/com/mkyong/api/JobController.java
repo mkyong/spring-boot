@@ -33,9 +33,16 @@ public class JobController {
             @RequestParam(value = "name", defaultValue = "Hello World") String name,
             @RequestParam(value = "when", defaultValue = "PT3H") String when) {
 
-        jobScheduler.schedule(() ->
-                        sampleJobService.execute(name),
-                Instant.now().plus(Duration.parse(when))
+        // old API, job first followed by time
+        /*
+            jobScheduler.schedule(() -> sampleJobService.execute(name),
+                Instant.now().plus(Duration.parse(when)));
+        */
+
+        // new API, time first followed by job
+        jobScheduler.schedule(
+                Instant.now().plus(Duration.parse(when)),
+                () -> sampleJobService.execute(name)
         );
 
         return "Job is scheduled.";
