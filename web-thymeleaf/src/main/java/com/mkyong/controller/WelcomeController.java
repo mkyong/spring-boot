@@ -1,6 +1,7 @@
 package com.mkyong.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import java.util.List;
 @Controller
 public class WelcomeController {
 
+    TomcatServletWebServerFactory
     // inject via application.properties
     @Value("${welcome.message}")
     private String message;
