@@ -12,4 +12,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     public <User> fetchById(int id);
 
+    public <User> fetchJobById(int id);
+
 }
