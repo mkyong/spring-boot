@@ -14,4 +14,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     List<Book> deleteById(int id);
 
+    List<Book> findByIdAndName(int id,String name);
+    
+
 }
