@@ -85,5 +85,8 @@ public class BookController {
     void deleteBook(@PathVariable Long id) {
         repository.deleteById(id);
     }
-
+    @PutMapping("/updatebook")
+public Book updateBook(@RequeatBody Book book){
+    return null;
+}
 }
