@@ -12,5 +12,9 @@ public class MainController {
     public String hello() {
         return "Hello Controller";
     }
+    @PostMapping("/create")
+    public Emp createEmps(@RequestBody Emp emp){
+        return save(emp);
+    }
 
 }
