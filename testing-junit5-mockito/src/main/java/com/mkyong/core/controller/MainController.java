@@ -20,3 +20,6 @@ public class MainController {
     public Emp getByEmpId(@PathVariable int id){
         return getEmpById(id);
 }
+public String deleteId(){
+    return null;
+}
