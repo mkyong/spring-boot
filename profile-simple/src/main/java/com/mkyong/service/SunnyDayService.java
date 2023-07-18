@@ -13,8 +13,5 @@ public class SunnyDayService implements WeatherService {
     public String forecast() {
         return "Today is sunny day!";
     }
-    public String forcast(){
-        return "Today is cool day";
-    }
 
 }
