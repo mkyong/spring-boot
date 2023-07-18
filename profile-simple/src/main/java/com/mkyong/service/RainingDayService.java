@@ -11,5 +11,9 @@ public class RainingDayService implements WeatherService {
     public String forecast() {
         return "Today is raining day!";
     }
+    public String getName(){
+        return name;
+        
+    }
 
 }
