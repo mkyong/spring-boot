@@ -25,7 +25,8 @@ public class HelloController {
 
         return "index"; // index.html
     }
-    
+    public int getId(){
+        return 10;
         
     }
 
