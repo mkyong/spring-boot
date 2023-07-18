@@ -13,5 +13,9 @@ public class SunnyDayService implements WeatherService {
     public String forecast() {
         return "Today is sunny day!";
     }
+    @Override
+    public String forecast(){
+        return "Today is cool day"; 
+    }
 
 }
