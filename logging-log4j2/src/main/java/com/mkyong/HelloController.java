@@ -36,5 +36,8 @@ public class HelloController {
     private int getNum() {
         return 100;
     }
+    public int setNum(int num){
+        this.num=num;
+    }
 
 }
