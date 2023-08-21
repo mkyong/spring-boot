@@ -185,6 +185,7 @@ public class WebControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
+        // convert JSON to Map object
         String content = result.getResponse().getContentAsString();
         Map<String, Object> resultMap = new ObjectMapper().readValue(content, new TypeReference<>() {
         });
