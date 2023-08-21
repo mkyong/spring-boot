@@ -12,7 +12,7 @@ import java.util.List;
 
 // This component maps value from application.properties to object via @ConfigurationProperties
 @Component
-@ConfigurationProperties("app")
+@ConfigurationProperties("app") // prefix app, find app.* values
 public class AppProperties {
 
     private String error;

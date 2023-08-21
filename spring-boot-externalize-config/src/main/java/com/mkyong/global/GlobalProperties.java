@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
 
 // This component maps value from application.properties to object via @ConfigurationProperties
 @Component
-@ConfigurationProperties
+@ConfigurationProperties // no prefix, find root level values.
 @Validated
 public class GlobalProperties {
 
