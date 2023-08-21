@@ -1,0 +1,19 @@
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.mkyong: DEBUG
+email: test@mkyong.com
+thread-pool: 5
+app:
+  menus:
+    - title: Home
+      name: Home
+      path: /
+    - title: Login
+      name: Login
+      path: /login
+  compiler:
+    timeout: 5
+    output-folder: /temp/
+  error: /error/
+
