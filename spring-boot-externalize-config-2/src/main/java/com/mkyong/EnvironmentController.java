@@ -17,12 +17,12 @@ public class EnvironmentController {
     @GetMapping("/env")
     public Map<String, String> getEmailFromEnvironment() {
 
-        String smtp = env.getProperty("smtp.server");
-        String username = env.getProperty("smtp.username");
-        String port = env.getProperty("smtp.port");
+        String server = env.getProperty("email.smtp.server");
+        String username = env.getProperty("email.smtp.username");
+        String port = env.getProperty("email.smtp.port");
 
         Map<String, String> map = new HashMap<>();
-        map.put("smtp", smtp);
+        map.put("server", server);
         map.put("username", username);
         map.put("port", port);
 

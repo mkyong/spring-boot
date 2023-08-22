@@ -6,30 +6,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmailServer {
 
-    @Value("${smtp.server}")
-    private String smtp;
+    @Value("${email.smtp.server}")
+    private String server;
 
-    @Value("${smtp.port}")
+    @Value("${email.smtp.port}")
     private Integer port;
 
-    @Value("${smtp.username}")
+    @Value("${email.smtp.username}")
     private String username;
 
-    @Override
-    public String toString() {
-        return "EmailServer{" +
-                "smtp='" + smtp + '\'' +
-                ", port=" + port +
-                ", username='" + username + '\'' +
-                '}';
+    public String getServer() {
+        return server;
     }
 
-    public String getSmtp() {
-        return smtp;
-    }
-
-    public void setSmtp(String smtp) {
-        this.smtp = smtp;
+    public void setServer(String server) {
+        this.server = server;
     }
 
     public Integer getPort() {
