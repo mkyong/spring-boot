@@ -1,7 +1,8 @@
-# Spring @Value default value
-
-Article link 
+# Spring @Value default value 
 * [https://mkyong.com/spring3/spring-value-default-value/](https://mkyong.com/spring3/spring-value-default-value/)
+
+# Spring @TestPropertySource example
+* [https://mkyong.com/spring-boot/spring-testpropertysource-example/](https://mkyong.com/spring-boot/spring-testpropertysource-example/)
 
 ## 1. How to start
 ```
