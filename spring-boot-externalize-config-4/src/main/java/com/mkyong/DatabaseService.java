@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseService {
 
     @Value("${db.name:hello}")
-    private String name;
+    private String name; // if db.name doesn't exist, we get hello
 
     public String getName() {
         return name;

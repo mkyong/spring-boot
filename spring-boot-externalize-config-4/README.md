@@ -1,7 +1,7 @@
-# Accessing Values from application.properties in Spring Boot
+# Spring @Value default value
 
 Article link 
-* [https://mkyong.com/spring-boot/how-to-access-values-from-application-properties-in-spring-boot/](https://mkyong.com/spring-boot/how-to-access-values-from-application-properties-in-spring-boot/)
+* [https://mkyong.com/spring3/spring-value-default-value/](https://mkyong.com/spring3/spring-value-default-value/)
 
 ## 1. How to start
 ```
@@ -12,10 +12,4 @@ $ cd spring-boot-externalize-config-4
 $ mvn test
 
 $ mvn spring-boot:run
-
-$ curl localhost:8080/email
-
-$ curl localhost:8080/email2
-
-$ curl localhost:8080/env
 ```
