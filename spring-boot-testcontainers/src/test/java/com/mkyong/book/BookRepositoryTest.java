@@ -1,6 +1,5 @@
 package com.mkyong.book;
 
-import org.junit.ClassRule;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,6 @@ public class BookRepositoryTest {
      * postgres:15-alpine
      * PostgreSQL version 15 using the lightweight Alpine Linux as the base image
      */
-    @ClassRule
     static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>(
             "postgres:15-alpine"
     );
@@ -58,14 +56,16 @@ public class BookRepositoryTest {
         book.setName("Is Java Dead?");
         book.setIsbn("111-111");
 
-        ResponseEntity<Book> createResponse = restTemplate.postForEntity("/books", book, Book.class);
+        ResponseEntity<Book> createResponse =
+                restTemplate.postForEntity("/books", book, Book.class);
         assertEquals(HttpStatus.OK, createResponse.getStatusCode());
         Book savedBook = createResponse.getBody();
 
         assert savedBook != null;
 
         // Retrieve
-        ResponseEntity<Book> getResponse = restTemplate.getForEntity("/books/" + savedBook.getId(), Book.class);
+        ResponseEntity<Book> getResponse =
+                restTemplate.getForEntity("/books/" + savedBook.getId(), Book.class);
         assertEquals(HttpStatus.OK, getResponse.getStatusCode());
 
         Book bookFromGet = getResponse.getBody();
@@ -76,7 +76,8 @@ public class BookRepositoryTest {
         assertEquals("111-111", bookFromGet.getIsbn());
 
         // Retrieve All
-        ResponseEntity<Book[]> getAllResponse = restTemplate.getForEntity("/books", Book[].class);
+        ResponseEntity<Book[]> getAllResponse =
+                restTemplate.getForEntity("/books", Book[].class);
         assertEquals(HttpStatus.OK, getAllResponse.getStatusCode());
 
         Book[] bookFromGetAll = getAllResponse.getBody();
