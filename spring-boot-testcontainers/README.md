@@ -1,6 +1,6 @@
 # Spring Boot Testcontainers example
 
-* [Article Link](https://mkyong.com/spring-boot/spring-boot-testcontainers-example/)
+This is sample code for [Spring Boot Testcontainers example](https://mkyong.com/spring-boot/spring-boot-testcontainers-example/)
 
 ## 1. How to start
 ```

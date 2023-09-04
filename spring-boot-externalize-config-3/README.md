@@ -1,7 +1,6 @@
 # Spring @PropertySource example
 
-Article link
-* [https://mkyong.com/spring/spring-propertysources-example/](https://mkyong.com/spring/spring-propertysources-example/)
+This is sample code for [Spring @PropertySource example](https://mkyong.com/spring/spring-propertysources-example/)
 
 ## 1. How to start
 ```
