@@ -1,9 +1,12 @@
 package com.mkyong;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 public class Book {
@@ -11,20 +14,26 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String title;
+    private BigDecimal price;
+    private LocalDate publishDate;
 
     public Book() {
     }
 
-    public Book(String name) {
-        this.name = name;
+    public Book(String title, BigDecimal price, LocalDate publishDate) {
+        this.title = title;
+        this.price = price;
+        this.publishDate = publishDate;
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", publishDate=" + publishDate +
                 '}';
     }
 
@@ -36,11 +45,27 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public LocalDate getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDate publishDate) {
+        this.publishDate = publishDate;
     }
 }
