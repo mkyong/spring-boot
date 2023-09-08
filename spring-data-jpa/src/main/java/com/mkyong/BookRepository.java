@@ -10,7 +10,7 @@ import java.util.List;
 //Spring Data JPA creates CRUD implementation at runtime automatically.
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    // match the book field name
+    // it works if it matches the book field name
     List<Book> findByTitle(String title);
 
     // Custom Query

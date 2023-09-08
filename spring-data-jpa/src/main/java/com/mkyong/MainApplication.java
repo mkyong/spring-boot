@@ -20,7 +20,6 @@ public class MainApplication {
         SpringApplication.run(MainApplication.class, args);
     }
 
-    // uncomment this for testing in CommandLineRunner
     // Spring runs CommandLineRunner bean when Spring Boot App starts
     @Bean
     public CommandLineRunner demo(BookRepository bookRepository) {
