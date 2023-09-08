@@ -18,7 +18,8 @@ public class Book {
     private BigDecimal price;
     private LocalDate publishDate;
 
-    public Book() {
+    // for JPA only, no use
+    protected Book() {
     }
 
     public Book(String title, BigDecimal price, LocalDate publishDate) {

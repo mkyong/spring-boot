@@ -7,9 +7,8 @@ import org.springframework.data.repository.query.Param;
 import java.time.LocalDate;
 import java.util.List;
 
+//Spring Data JPA creates CRUD implementation at runtime automatically.
 public interface BookRepository extends JpaRepository<Book, Long> {
-
-    //CRUD implementation created at runtime, beauty of Spring Data JPA
 
     // match the book field name
     List<Book> findByTitle(String title);

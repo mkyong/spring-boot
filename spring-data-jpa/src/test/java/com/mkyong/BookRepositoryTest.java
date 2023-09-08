@@ -1,5 +1,6 @@
 package com.mkyong;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -25,12 +26,12 @@ public class BookRepositoryTest {
 
     // Need clean up if the MainApplication CommandLineRunner bean inserted some data
     // empty table.
-    /*@BeforeEach
+    @BeforeEach
     void cleanup() {
         bookRepository.deleteAll();
         bookRepository.flush();
         testEM.clear();
-    }*/
+    }
 
     @Test
     public void testSave() {
