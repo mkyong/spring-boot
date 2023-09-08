@@ -16,5 +16,5 @@ $ git clone https://github.com/mkyong/spring-boot.git
 
 $ cd spring-data-jpa-test
 
-$ mvnw test
+$ ./mvnw test
 ```
