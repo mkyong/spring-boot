@@ -65,6 +65,7 @@ public class BookRepositoryTest {
         // update price from 9.99 to 19.99
         b1.setPrice(BigDecimal.valueOf(19.99));
 
+        // update
         bookRepository.save(b1);
 
         List<Book> result = bookRepository.findByTitle("Book A");
@@ -146,6 +147,7 @@ public class BookRepositoryTest {
 
         List<Book> result = bookRepository.findByPublishedDateAfter(
                 LocalDate.of(2023, 7, 1));
+        // b1 and b2
         assertEquals(2, result.size());
 
     }
