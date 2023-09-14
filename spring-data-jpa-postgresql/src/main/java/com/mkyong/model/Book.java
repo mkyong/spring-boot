@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Entity
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,6 +25,16 @@ public class Book {
         this.title = title;
         this.price = price;
         this.publishDate = publishDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                ", publishDate=" + publishDate +
+                '}';
     }
 
     public Long getId() {

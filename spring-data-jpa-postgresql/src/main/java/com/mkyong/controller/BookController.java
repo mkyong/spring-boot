@@ -4,6 +4,7 @@ import com.mkyong.model.Book;
 import com.mkyong.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -32,11 +33,12 @@ public class BookController {
         return bookService.findByTitle(title);
     }
 
-    @GetMapping("/find/date/{date}")
+    @GetMapping("/find/date-after/{date}")
     public List<Book> findByPublishedDateAfter(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         return bookService.findByPublishedDateAfter(date);
     }
 
+    @ResponseStatus(HttpStatus.CREATED) // 201
     @PostMapping
     public Book create(@RequestBody Book book) {
         return bookService.save(book);
@@ -47,6 +49,7 @@ public class BookController {
         return bookService.save(book);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT) // 204
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
