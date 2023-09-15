@@ -25,7 +25,7 @@
 
     <dependencies>
 
-        <!-- Spring Web -->
+        <!-- Spring MVC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -37,27 +37,27 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- PostgreSQL -->
+        <!-- PostgreSQL database -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Testing -->
+        <!-- Spring Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+        <!-- Test with TestContainers -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-testcontainers</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- TestContainers -->
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>testcontainers</artifactId>
@@ -70,7 +70,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Testcontainers JUnit 5 Extension -->
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -84,6 +83,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- optional, for development -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

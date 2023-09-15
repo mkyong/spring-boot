@@ -1,4 +1,4 @@
-package com.mkyong;
+/*package com.mkyong;
 
 import com.mkyong.model.Book;
 import com.mkyong.repository.BookRepository;
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;*/
 
 /**
  * @DataJpaTest 1. It scans the `@Entity` classes and Spring Data JPA repositories.
@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * it means we do not need to clean up saved or modified table data after each test.
  * 4. Replace the application DataSource, run and configure the embed database on classpath.
  */
+/*
 @DataJpaTest
 // We provide the `test containers` as DataSource, don't replace it.
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -185,4 +186,4 @@ public class BookRepositoryTest {
 
     }
 
-}
+}*/

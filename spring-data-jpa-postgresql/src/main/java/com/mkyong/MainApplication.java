@@ -1,17 +1,22 @@
 package com.mkyong;
 
+import com.mkyong.model.Book;
 import com.mkyong.repository.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class MainApplication {
-
-    @Autowired
-    BookRepository bookRepository;
 
     private static final Logger log = LoggerFactory.getLogger(MainApplication.class);
 
@@ -19,8 +24,16 @@ public class MainApplication {
         SpringApplication.run(MainApplication.class, args);
     }
 
-    /*@Override
-    public void run(String... args) throws Exception {
+    @Autowired
+    BookRepository bookRepository;
+
+    // Run this if app.db.init.enabled = true
+    @Bean
+    @ConditionalOnProperty(prefix = "app", name = "db.init.enabled", havingValue = "true")
+    public CommandLineRunner demoCommandLineRunner() {
+        return args -> {
+
+            System.out.println("Running.....");
 
             Book b1 = new Book("Book A",
                     BigDecimal.valueOf(9.99),
@@ -37,5 +50,7 @@ public class MainApplication {
 
             bookRepository.saveAll(List.of(b1, b2, b3, b4));
 
-    }*/
+        };
+    }
+
 }

@@ -28,31 +28,35 @@ public class BookController {
         return bookService.findById(id);
     }
 
-    @GetMapping("/find/title/{title}")
-    public List<Book> findByTitle(@PathVariable String title) {
-        return bookService.findByTitle(title);
-    }
-
-    @GetMapping("/find/date-after/{date}")
-    public List<Book> findByPublishedDateAfter(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
-        return bookService.findByPublishedDateAfter(date);
-    }
-
+    // create a book
     @ResponseStatus(HttpStatus.CREATED) // 201
     @PostMapping
     public Book create(@RequestBody Book book) {
         return bookService.save(book);
     }
 
+    // update a book
     @PutMapping
     public Book update(@RequestBody Book book) {
         return bookService.save(book);
     }
 
+    // delete a book
     @ResponseStatus(HttpStatus.NO_CONTENT) // 204
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
+    }
+
+    @GetMapping("/find/title/{title}")
+    public List<Book> findByTitle(@PathVariable String title) {
+        return bookService.findByTitle(title);
+    }
+
+    @GetMapping("/find/date-after/{date}")
+    public List<Book> findByPublishedDateAfter(
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+        return bookService.findByPublishedDateAfter(date);
     }
 
 }

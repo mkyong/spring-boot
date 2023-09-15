@@ -13,6 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByTitle(String title);
 
+    // Custom query
     @Query("SELECT b FROM Book b WHERE b.publishDate > :date")
     List<Book> findByPublishedDateAfter(@Param("date") LocalDate date);
 
