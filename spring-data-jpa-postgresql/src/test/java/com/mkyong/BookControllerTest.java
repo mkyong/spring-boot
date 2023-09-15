@@ -73,11 +73,11 @@ public class BookControllerTest {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/books")
+                    .get("/books")
                 .then()
-                .statusCode(200)    // expecting HTTP 200 OK
-                .contentType(ContentType.JSON) // expecting JSON response content
-                .body(".", hasSize(4));
+                    .statusCode(200)    // expecting HTTP 200 OK
+                    .contentType(ContentType.JSON) // expecting JSON response content
+                    .body(".", hasSize(4));
 
     }
 
@@ -92,11 +92,11 @@ public class BookControllerTest {
                 .contentType(ContentType.JSON)
                 .pathParam("title", title)
                 .when()
-                .get("/books/find/title/{title}")
+                    .get("/books/find/title/{title}")
                 .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .body(
+                    .statusCode(200)
+                    .contentType(ContentType.JSON)
+                    .body(
                         ".", hasSize(1),
                         "[0].title", equalTo("Book C"),
                         "[0].price", is(new BigDecimal("29.99")),
@@ -115,16 +115,16 @@ public class BookControllerTest {
                 .contentType(ContentType.JSON)
                 .pathParam("date", date)
                 .when()
-                .get("/books/find/date-after/{date}")
+                    .get("/books/find/date-after/{date}")
                 .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .body(
+                    .statusCode(200)
+                    .contentType(ContentType.JSON)
+                    .body(
                         ".", hasSize(2),
                         "title", hasItems("Book A", "Book B"),
                         "price", hasItems(new BigDecimal("9.99"), new BigDecimal("19.99")),
                         "publishDate", hasItems("2023-08-31", "2023-07-31")
-                )
+                    )
                 .extract().response();
 
         // get the response and print it out
@@ -139,9 +139,9 @@ public class BookControllerTest {
         given()
                 .pathParam("id", id)
                 .when()
-                .delete("/books/{id}")
+                    .delete("/books/{id}")
                 .then()
-                .statusCode(204); // expecting HTTP 204 No Content
+                    .statusCode(204); // expecting HTTP 204 No Content
     }
 
     @Test
@@ -151,10 +151,10 @@ public class BookControllerTest {
                 .contentType(ContentType.JSON)
                 .body("{ \"title\": \"Book E\", \"price\": \"9.99\", \"publishDate\": \"2023-09-14\" }")
                 .when()
-                .post("/books")
+                    .post("/books")
                 .then()
-                .statusCode(201) // expecting HTTP 201 Created
-                .contentType(ContentType.JSON); // expecting JSON response content
+                    .statusCode(201) // expecting HTTP 201 Created
+                    .contentType(ContentType.JSON); // expecting JSON response content
 
         // find the new saved book
         given()
@@ -163,16 +163,16 @@ public class BookControllerTest {
                 .contentType(ContentType.JSON)
                 .pathParam("title", "Book E")
                 .when()
-                .get("/books/find/title/{title}")
+                    .get("/books/find/title/{title}")
                 .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .body(
+                    .statusCode(200)
+                    .contentType(ContentType.JSON)
+                    .body(
                         ".", hasSize(1),
                         "[0].title", equalTo("Book E"),
                         "[0].price", is(new BigDecimal("9.99")),
                         "[0].publishDate", equalTo("2023-09-14")
-                );
+                    );
     }
 
     /**
@@ -196,10 +196,10 @@ public class BookControllerTest {
                 .contentType(ContentType.JSON)
                 .body(bookD)
                 .when()
-                .put("/books")
+                    .put("/books")
                 .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON);
+                    .statusCode(200)
+                    .contentType(ContentType.JSON);
 
         // get the updated book
         Book updatedBook = bookRepository.findById(id).orElseThrow();
@@ -209,8 +209,7 @@ public class BookControllerTest {
         assertEquals("Book E", updatedBook.getTitle());
         assertEquals(new BigDecimal("199.99"), updatedBook.getPrice());
         assertEquals(LocalDate.of(2024, 1, 31), updatedBook.getPublishDate());
-
-
+        
     }
 
 
