@@ -1,14 +1,22 @@
-# Spring Boot Testcontainers example
+# Spring Boot and Testcontainers Example
 
-This is sample code for [Spring Boot Testcontainers example](https://mkyong.com/spring-boot/spring-boot-testcontainers-example/)
+Related Articles
+* [Spring Boot Testcontainers example](https://mkyong.com/spring-boot/spring-boot-testcontainers-example/)
 
-## 1. How to start
+## Technologies:
+* Spring Boot 3.1.2 (Spring Web MVC, Spring Data JPA and Spring Test)
+* Testcontainers 1.19.0
+* PostgreSQL 15, Alpine Linux base image `postgres:15-alpine`
+* Java 17
+* JUnt 5
+
+## How to start
 ```
 $ git clone https://github.com/mkyong/spring-boot.git
 
 $ cd spring-boot-testcontainers
 
-$ mvn test
+$ ./mvnw test
 
-$ mvn spring-boot:run
+$ ./mvnw spring-boot:run
 ```

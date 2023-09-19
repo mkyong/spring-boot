@@ -9,7 +9,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Starts Spring Book Testcontainers application...");
+        System.out.println("Starts Spring Boot Testcontainers application...");
     }
 
     public static void main(String[] args) {
