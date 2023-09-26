@@ -1,6 +1,6 @@
-# Spring Boot + Spring data JPA + MySQL example
+# Spring Boot + Spring Data JPA + MySQL example
 
-Article link : https://www.mkyong.com/spring-boot/spring-boot-spring-data-jpa-mysql-example/
+Article link : https://mkyong.com/spring-boot/spring-boot-spring-data-jpa-mysql-example/
 
 ## Technologies used:
 * Spring Boot 3.1.2
