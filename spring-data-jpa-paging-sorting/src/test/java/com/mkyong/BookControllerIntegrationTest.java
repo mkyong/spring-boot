@@ -71,9 +71,9 @@ public class BookControllerIntegrationTest {
         ParameterizedTypeReference<List<Book>> typeRef = new ParameterizedTypeReference<>() {
         };
 
-        // sort by price, desc, get page 1 , size = 4
+        // sort by price, desc, get page 0 , size = 4
         ResponseEntity<List<Book>> response = restTemplate.exchange(
-                BASEURI + "/books?pageNo=1&pageSize=4&sortBy=price&sortDirection=desc",
+                BASEURI + "/books?pageNo=0&pageSize=4&sortBy=title&sortDirection=desc",
                 HttpMethod.GET,
                 null,
                 typeRef
@@ -100,9 +100,9 @@ public class BookControllerIntegrationTest {
                 );
 
 
-        // sort by price, desc, get page 2 , size = 4
+        // sort by price, desc, get page 1 , size = 4
         ResponseEntity<List<Book>> response2 = restTemplate.exchange(
-                BASEURI + "/books?pageNo=2&pageSize=4&sortBy=price&sortDirection=desc",
+                BASEURI + "/books?pageNo=1&pageSize=4&sortBy=title&sortDirection=desc",
                 HttpMethod.GET,
                 null,
                 typeRef

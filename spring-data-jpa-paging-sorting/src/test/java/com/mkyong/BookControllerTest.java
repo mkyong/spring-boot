@@ -20,7 +20,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -107,7 +108,6 @@ public class BookControllerTest {
                                 "Book D", "Book E", "Book F")))
                 .andDo(print());
 
-       // verify(bookRepository, times(1)).findAll(pageRequest);
     }
 
 }

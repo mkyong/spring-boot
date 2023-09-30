@@ -15,7 +15,8 @@ public class BookService {
 
     public Page<Book> findAll(int pageNo, int pageSize, String sortBy, String sortDirection) {
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
         return bookRepository.findAll(pageable);
     }
 
