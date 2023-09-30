@@ -1,31 +1,29 @@
-# Spring Boot + Spring Data JPA + MySQL example
+# Spring Boot + Spring Data JPA + Paging And Sorting example
 
-Article link : https://mkyong.com/spring-boot/spring-boot-spring-data-jpa-mysql-example/
+Article link : https://mkyong.com/spring-boot/spring-data-jpa-paging-and-sorting-example/
 
 ## Technologies used:
 * Spring Boot 3.1.2
-* Spring Data JPA (Hibernate 6 is the default JPA implementation)
-* MySQL 8
+* Spring Data JPA
+* H2 in-memory database
 * Java 17
 * Maven 3
 * JUnit 5
-* Spring Test using TestRestTemplate
-* Docker, [Testcontainers](https://testcontainers.com/) (for Spring integration tests using a MySQL container)
+* Spring Integration Tests with TestRestTemplate
+* Unit Tests with Mocking (Mockito)
 
 ## How to run it
 ```
 
 $ git clone [https://github.com/mkyong/spring-boot.git](https://github.com/mkyong/spring-boot.git)
 
-$ cd spring-data-jpa-mysql
-
-# Run MySQL container for testing
-$ docker run --name c1 -p 3306:3306 -e MYSQL_USER=mkyong -e MYSQL_PASSWORD=password -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=mydb -d mysql:8.1
-
-# Skip test, the Testcontainers takes time
-$ ./mvnw clean package -Dmaven.test.skip=true
+$ cd spring-data-jpa-paging-sorting
 
 $ ./mvnw spring-boot:run
+
+$ curl -s "http://localhost:8080/books"
+
+$ curl -s "http://localhost:8080/books?pageNo=1&pageSize=4&sortBy=title&sortDirection=desc" | python3 -m json.tool
 
 ```
 
