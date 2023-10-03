@@ -1,7 +1,8 @@
 # Spring Boot CommandLineRunner Example
 
 Article links
-* https://mkyong.com/spring-boot/spring-boot-commandlinerunner-example/
+* [Spring Boot CommandLineRunner Example](https://mkyong.com/spring-boot/spring-boot-commandlinerunner-example/)
+* [How to Run a CommandLineRunner Bean Conditionally in Spring Boot](https://mkyong.com/spring-boot/how-to-run-a-commandlinerunner-bean-conditionally-in-spring-boot/)
 
 ## Technologies used:
 * Spring Boot 3.1.2
