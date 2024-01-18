@@ -64,3 +64,6 @@ public String fetchById(){
     public Response createUser(){
         return null;
 }
+public Response updateUser(){
+    return null;
+}
