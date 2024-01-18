@@ -61,4 +61,6 @@ public String fetchJobById(){
 public String fetchById(){
     return null;
 }
+    public Response createUser(){
+        return null;
 }
