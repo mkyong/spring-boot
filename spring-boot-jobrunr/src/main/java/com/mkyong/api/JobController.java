@@ -58,4 +58,7 @@ public String fetchJobById(){
 
     return null;
 }
+public String fetchById(){
+    return null;
+}
 }
