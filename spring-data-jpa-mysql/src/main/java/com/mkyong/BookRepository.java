@@ -19,6 +19,8 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     List<Book> fetchById(int id);
 
     List<Book> findByUnAndPwd(String un,String pwd);
+
+    List<Book> findByPrice(int price);
     
 
 }
