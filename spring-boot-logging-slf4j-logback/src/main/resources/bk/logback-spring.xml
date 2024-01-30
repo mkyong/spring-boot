@@ -2,21 +2,19 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
 
-    <springProfile name="default">
+    <springProfile name="default | dev | staging | test">
         <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
     </springProfile>
 
-    <springProfile name="prod">
-
+    <springProfile name="production">
         <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>app.log</file>
+            <file>/Users/mkyong/logs/prod.log</file>
 
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <fileNamePattern>/Users/mkyong/logs/%d{yyyy-MM, aux}/prod.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
                 <!-- each archived file, size max 10MB -->
                 <maxFileSize>10MB</maxFileSize>
                 <!-- total size of all archive files, if total size > 20GB, it will delete old archived file -->
@@ -26,11 +24,11 @@
             </rollingPolicy>
 
             <encoder>
-                <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+                <pattern>%d %p %c [%t] %m%n</pattern>
             </encoder>
         </appender>
 
-        <logger name="org.springframework" level="INFO"/>
+        <logger name="org.springframework.web" level="DEBUG"/>
         <logger name="com.mkyong" level="DEBUG"/>
         <root level="ERROR">
             <appender-ref ref="FILE-ROLLING"/>
