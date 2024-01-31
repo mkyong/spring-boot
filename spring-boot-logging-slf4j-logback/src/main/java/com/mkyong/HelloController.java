@@ -15,16 +15,14 @@ public class HelloController {
     @GetMapping("/")
     public String hello() {
 
-        for(int i = 0; i <=1000000 ;i++){
-            logger.info("Info level - Hello Logback");
-            logger.debug("Debug level - Hello Logback");
-            logger.error("Error level - Hello Logback");
-        }
+        logger.info("Info level - Hello Logback");
+        logger.debug("Debug level - Hello Logback");
+        logger.error("Error level - Hello Logback");
 
         return "Hello SLF4J";
     }
 
-    // Log with variable
+    // Log variables
     @GetMapping("/hello/{name}")
     String find(@PathVariable String name) {
 
