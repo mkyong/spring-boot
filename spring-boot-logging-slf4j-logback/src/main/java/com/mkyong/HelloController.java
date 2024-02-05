@@ -15,8 +15,10 @@ public class HelloController {
     @GetMapping("/")
     public String hello() {
 
-        logger.info("Info level - Hello Logback");
         logger.debug("Debug level - Hello Logback");
+
+        logger.info("Info level - Hello Logback");
+
         logger.error("Error level - Hello Logback");
 
         return "Hello SLF4J";
@@ -26,8 +28,10 @@ public class HelloController {
     @GetMapping("/hello/{name}")
     String find(@PathVariable String name) {
 
-        logger.info("Info level - Hello Logback {}", name);
         logger.debug("Debug level - Hello Logback {}", name);
+
+        logger.info("Info level - Hello Logback {}", name);
+
         logger.error("Error level - Hello Logback {}", name);
 
         return "Hello SLF4J" + name;

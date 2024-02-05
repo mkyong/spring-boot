@@ -1,6 +1,6 @@
 # Spring Boot Logback SLF4j Examples
 
-This is the source code the article [Spring Boot Logback SLF4j Examples](https://mkyong.com/spring-boot/spring-boot-slf4j-logging-example/)
+This is the source code the article [Spring Boot Logging Using Logback Examples](https://mkyong.com/spring-boot/spring-boot-logging-example/s)
 
 # How to run it?
 
