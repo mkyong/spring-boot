@@ -7,8 +7,6 @@ import java.util.List;
 public interface BookRepository extends CrudRepository<Book, Long> {
 
     List<Book> findByName(String name);
-
-    public User findById(int id);
     
     public User findByUnAndPwd(String un,String pwd);
 
