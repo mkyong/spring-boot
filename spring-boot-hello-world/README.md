@@ -1,7 +1,14 @@
 # Spring Boot Hello World Example
-Get started with the Spring Boot application, a hello world example.
+Get started with Spring Boot. A hello world web example with Maven, Java 25, and Spring Boot 4.
 
+Visit Article - []
 https://mkyong.com/spring-boot/spring-boot-hello-world-example/
+
+Things you will use:
+
+* Spring Boot 4.0.6
+* Java 25
+* Maven 3.9.6
 
 ## 1. How to start
 ```bash
