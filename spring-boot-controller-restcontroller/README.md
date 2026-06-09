@@ -11,7 +11,7 @@ Visit Article - [Spring Boot @Controller vs @RestController Example](https://mky
 
 ## How to start
 ```bash
-$ git clone [https://github.com/mkyong/spring-boot.git](https://github.com/mkyong/spring-boot.git)
+$ git clone https://github.com/mkyong/spring-boot.git
 
 $ cd spring-boot-controller-restcontroller
 
@@ -21,5 +21,3 @@ $ mvn spring-boot:run
 # test
 Visit http://localhost:8080/hello
 ```
-
-
