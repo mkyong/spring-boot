@@ -1,7 +1,7 @@
-# Spring Boot Hello World Example
-Get started with Spring Boot. A hello world web example with Maven, Java 25, and Spring Boot 4.
+# Spring Boot @Controller vs @RestController Example
+Learn the difference between @Controller and @RestController in Spring Boot with simple, runnable examples and clear output. Beginner-friendly guide.
 
-Visit Article - [Spring Boot Hello World Example](https://mkyong.com/spring-boot/spring-boot-hello-world-example/)
+Visit Article - [Spring Boot @Controller vs @RestController Example](https://mkyong.com/spring-boot/spring-boot-controller-vs-restcontroller-example/)
 
 ## Things you will use:
 
@@ -13,13 +13,13 @@ Visit Article - [Spring Boot Hello World Example](https://mkyong.com/spring-boot
 ```bash
 $ git clone [https://github.com/mkyong/spring-boot.git](https://github.com/mkyong/spring-boot.git)
 
-$ cd spring-boot-hello-world
+$ cd spring-boot-controller-restcontroller
 
 # Tomcat started at 8080
 $ mvn spring-boot:run
 
 # test
-curl localhost:8080
+Visit http://localhost:8080/hello
 ```
 
 
