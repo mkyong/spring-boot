@@ -1,0 +1,18 @@
+= Book Manager API
+:toc: left
+
+== Get one book
+
+Ask for a book by its id.
+
+Here is the call:
+
+include::{snippets}/find-book/curl-request.adoc[]
+
+include::{snippets}/find-book/path-parameters.adoc[]
+
+And here is what comes back:
+
+include::{snippets}/find-book/http-response.adoc[]
+
+include::{snippets}/find-book/response-fields.adoc[]
