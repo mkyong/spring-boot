@@ -13,7 +13,7 @@ Visit Article - [Spring Boot Hello World Example](https://mkyong.com/spring-boot
 ```bash
 $ git clone [https://github.com/mkyong/spring-boot.git](https://github.com/mkyong/spring-boot.git)
 
-$ cd spring-boot-hello-world
+$ cd spring-boot/spring-boot-hello-world
 
 # Tomcat started at 8080
 $ mvn spring-boot:run
@@ -21,5 +21,3 @@ $ mvn spring-boot:run
 # test
 curl localhost:8080
 ```
-
-
