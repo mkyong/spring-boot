@@ -1,6 +1,6 @@
-# Spring Boot Supabase Example
+# Spring Boot Supabase CRUD Example
 
-Visit Article - [Spring Boot Supabase Example](https://mkyong.com/spring-boot/spring-boot-hello-world-example/)
+Visit Article - [Spring Boot Supabase Example](https://mkyong.com/spring-boot/spring-boot-supabase-crud-example/)
 
 ## Things you will use:
 
