@@ -1,23 +1,22 @@
-# Spring Boot Hello World Example
-Get started with Spring Boot. A hello world web example with Maven, Java 25, and Spring Boot 4.
+# Spring Boot RAG Example with Spring AI
 
-Visit Article - [Spring Boot Hello World Example](https://mkyong.com/spring-boot/spring-boot-hello-world-example/)
+Learn RAG (Retrieval Augmented Generation) in Spring Boot with Spring AI. Load your own notes into a vector store and let the AI answer questions about them.
 
-## Things you will use:
+Visit Article - [Spring Boot RAG Example with Spring AI](https://mkyong.com/spring-boot/spring-boot-rag-example-with-spring-ai/)
 
-* Spring Boot 4.0.6
+## Tested with these technologies:
+
+* Spring Boot 4.1.0
+* Spring AI 2.0.0
 * Java 25
 * Maven 3.9.6
+* OpenAI Key - `gpt-4o-mini`
 
 ## How to start
 ```bash
 $ git clone [https://github.com/mkyong/spring-boot.git](https://github.com/mkyong/spring-boot.git)
 
-$ cd spring-boot/spring-boot-hello-world
+$ cd spring-boot/spring-boot-ai-rag
 
-# Tomcat started at 8080
 $ mvn spring-boot:run
-
-# test
-curl localhost:8080
 ```
