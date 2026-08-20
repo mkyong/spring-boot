@@ -1,0 +1,33 @@
+# Query lists everything a client is allowed to read
+type Query {
+    bookById(id: ID!): Book          # get one book by its id
+    allBooks: [Book!]!               # get every book
+    searchBooks(keyword: String!): [Book!]!  # find books by name
+}
+
+# Mutation lists everything a client is allowed to change
+type Mutation {
+    addBook(bookInput: BookInput!): Book!    # add a new book
+}
+
+# A book. The "!" means the field can never be null
+type Book {
+    id: ID!
+    name: String!
+    pageCount: Int!
+    author: Author!
+}
+
+# An author
+type Author {
+    id: ID!
+    firstName: String!
+    lastName: String!
+}
+
+# Input is the shape of data a client sends in
+input BookInput {
+    name: String!
+    pageCount: Int!
+    authorId: ID!
+}
