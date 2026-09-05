@@ -14,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 
 @SpringBootApplication
+//this is the sample test to git hub
 public class Application implements CommandLineRunner {
 
     //https://docs.spring.io/spring/docs/5.1.6.RELEASE/spring-framework-reference/integration.html#mail
